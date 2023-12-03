@@ -1,0 +1,53 @@
+<header class="header bg-theme-10" id="header">
+    <div class="header_toggle text-theme-60" (click)="showSidebar()"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+    <div class="d-flex align-items-center">
+        <div (clickOutside)="hideSearchInput(0)" class="d-flex align-items-center header-icon">
+            <input [ngClass]="isDropdown[0]?'show-x':''" type="search" placeholder="Search">
+            <button (click)="showDropdown(0)"  type="button" class="btn btn-light bg-transparent border-0">
+                <i class='bx bx-search' ></i>
+            </button>
+        </div>
+        <div (clickOutside)="hideNotificationDropdown(1)" class="header-icon dropdown-container">
+            <div (click)="showDropdown(1)" class="notifications">
+                <span>2</span>
+                <button type="button" class="btn btn-light bg-transparent border-0">
+                    <i class='bx bx-bell'></i>
+                </button>
+            </div>
+            <div [ngClass]="isDropdown[1]?'show':''" class="dropdown">
+                <ul>
+                    <li> 
+                        <div class="notifications-items">
+                            <span> <strong>John invited you</strong> </span>
+                            <span>You have message from Peter</span>
+                        </div>
+                    </li>
+                    <li> 
+                        <div class="notifications-items border-0">
+                            <span> <strong>John invited you</strong> </span>
+                            <span>You have message from Peter</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div (clickOutside)="hideLogoutDropdown(2)" class="dropdown-container">
+            <button (click)="showDropdown(2)"  type="button" class="btn btn-light bg-transparent border-0 d-flex align-items-center">
+                <div class="header_img me-2"> 
+                    <img src="https://i.imgur.com/hczKIze.jpg" alt=""> 
+                </div>
+                <span>Naime</span>
+            </button>
+            <div [ngClass]="isDropdown[2]?'show':''" class="dropdown">
+                <ul>
+                    <li> 
+                        <div class="log-out-container  d-flex align-items-center">
+                            <i class='bx bx-log-out' ></i>
+                            <span class="ms-2">Log Out</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>

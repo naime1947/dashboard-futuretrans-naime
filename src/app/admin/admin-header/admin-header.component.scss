@@ -1,0 +1,146 @@
+@import "../../../theme/variables.scss";
+.header {
+    width: 100%;
+    height: $header-height;
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    background-color: $white-color;
+    z-index: $z-fixed;
+    transition: .5s
+}
+.header_toggle {
+    // color: $first-color;
+    font-size: 1.5rem;
+    cursor: pointer
+}
+.header_img {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden
+}
+.header_img img {
+    width: 40px
+}
+
+.header-icon{
+    position: relative;
+    input{
+        padding: 6px;
+        width: 100%;
+        border: 2px solid #f2d7d4;
+        border-radius: 4px;
+        background-color: #f2d7d4;
+        font-size: 14px;
+        min-width: 300px;
+        outline: none;
+
+        transform: translateX(-50px);
+        transition: 0.5s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
+    };
+    .show-x{
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    button{
+        font-size: 22px;
+        color: #333333
+    };
+}
+
+.notifications{
+    position: relative;
+    margin-right: 15px;
+    span{
+        width: 18px;
+        height: 18px;
+        background-color: $primary;
+        color: $white-color;
+        border-radius: 50%;
+        position: absolute;
+        right: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+    }
+}
+
+// Logout Button
+.log-out-container{
+    color: #ffffff;
+    font-size: 16px;
+    padding: 10px;
+    cursor: pointer;
+    i{
+        font-size: 24px;
+    }
+}
+
+// Notification dropdown
+.notifications-items{
+    width: 100%;
+    border-bottom: 1px solid $primary-bg-saperator;
+    padding: 10px;
+    display: grid;
+    cursor: pointer;
+    span{
+        color: $white-color;
+        font-size: 14px;
+    }
+}
+
+// Dropdown CSS
+.dropdown-container{
+    position: relative;
+    .dropdown{
+        position: absolute;
+        width: 100%;
+        background-color: $primary;
+        border-radius: 0px 0px 4px 4px;
+        min-width: 260px;
+        right: 0;
+
+        transform: translateY(50px);
+        transition: 0.5s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
+        ul{
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            li{
+                font-size: 16px;
+                list-style: none;
+            }
+        }
+    }
+    .show{
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .header {
+        height: calc($header-height) + 1rem;
+    }
+    .header_img {
+        width: 40px;
+        height: 40px
+    }
+    .header_img img {
+        width: 45px
+    }
+}

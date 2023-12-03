@@ -1,0 +1,37 @@
+$primary: #E74C3C;
+$primary-bg-saperator: #f6746c;
+$link-color:#ffffff;
+$border-radius: .15rem;
+$modal-content-border-radius: .15rem;
+
+$header-height: 3rem;
+$nav-width: 68px;
+$white-color: #F7F6FB;
+$body-font: 'Nunito', sans-serif;
+$normal-font-size: 1rem;
+$z-fixed: 100;
+
+@import '../../node_modules/bootstrap/scss/_functions';
+@import '../../node_modules/bootstrap/scss/_variables';
+
+$custom-theme-color:(
+    'theme-100': #78281F,
+    'theme-90': #943126,
+    'theme-80': #B03A2E,
+    'theme-70': #CB4335,
+    'theme-60': #E74C3C,
+    'theme-50': #EC7063,
+    'theme-40': #F1948A,
+    'theme-30': #F5B7B1,
+    'theme-20': #FADBD8,
+    'theme-10': #FDEDEC,
+    'white-100':#FFFFFF,
+    'white-50':#d5d5d5,
+    'color-white-100':#FFFFFF,
+    'color-white-50':#d5d5d5,
+);
+$theme-colors: map-merge($custom-theme-color, $theme-colors);
+
+
+// Impoer bootstrap
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';

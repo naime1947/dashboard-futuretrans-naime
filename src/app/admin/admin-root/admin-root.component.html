@@ -1,0 +1,9 @@
+<div class="height-100 bg-light d-flex flex-row">
+    <div>
+        <app-admin-sidebar [isExpanded]="isExpanded"></app-admin-sidebar>
+    </div>
+    <div class="full_width">
+        <app-admin-header (emitSidebar)="expandSidebar($event)"></app-admin-header>
+        <router-outlet></router-outlet>
+    </div>
+</div>

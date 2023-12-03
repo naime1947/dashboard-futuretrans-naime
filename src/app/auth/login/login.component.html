@@ -1,0 +1,25 @@
+<section class="bg-theme-10 d-flex justify-content-center w-100 h-100">
+    <div class="bg-white-100 p-4 align-self-center h-fit" style="width: 100%; max-width:450px">
+        <div class="my-3 text-center">
+            <h3>Login</h3>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="logedInForm" (ngSubmit)="login()">
+                <label for="basic-url" class="form-label">Email or Username</label>
+                <div class="input-group mb-3">
+                    <input formControlName="email" type="text" placeholder="Email" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                    <p *ngIf="isLoginSubmit && loginControl.email.errors">Please provide a valid email</p>
+                </div>
+
+                <label for="basic-url" class="form-label">Password</label>
+                <div class="input-group mb-3">
+                    <input formControlName="password" type="text" placeholder="Password" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                    <p *ngIf="isLoginSubmit && loginControl.password.errors">Password should be 5 car min</p>
+                </div>
+                <div class="input-group mt-3">
+                    <button class="btn btn-primary w-100" type="submit">Log In</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
