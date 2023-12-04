@@ -103,6 +103,7 @@
 // Dropdown CSS
 .dropdown-container{
     position: relative;
+    z-index: 9;
     .dropdown{
         position: absolute;
         width: 100%;

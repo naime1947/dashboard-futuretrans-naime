@@ -1,1 +1,118 @@
-<p>dashboard works!</p>
+<div class="container-fluid">
+    <div class="row my-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <h3 class="h3">Cat fact</h3>
+                    <button (click)="reloadCatFact()" class="btn btn-light bg-transparent border-0">
+                        <i class='bx bx-refresh nav_icon'></i>
+                    </button>
+                </div>
+                <div *ngIf="catFetchInfo" class="card-body">
+                    <h5 class="card-title">Number Cats: {{catFetchInfo.length}}</h5>
+                    <p class="card-text">{{catFetchInfo.fact}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <h3 class="h3">Sunrise / Sunset</h3>
+                    <button class="btn btn-light bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class='bx bx-filter-alt nav_icon'></i>
+                    </button>
+                </div>
+                <div *ngIf="sunriseSunsetInfo" class="card-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th scope="row">Sunrise</th>
+                                <td>{{sunriseSunsetInfo.results.sunrise}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Sunset</th>
+                                <td>{{sunriseSunsetInfo.results.sunset}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Solar Noon</th>
+                                <td>{{sunriseSunsetInfo.results.solar_noon}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Nautical Twilight Begin</th>
+                                <td>{{sunriseSunsetInfo.results.nautical_twilight_begin}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Nautical Twilight End</th>
+                                <td>{{sunriseSunsetInfo.results.nautical_twilight_end}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Day Length</th>
+                                <td>{{sunriseSunsetInfo.results.day_length}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Civil Twilight Begin</th>
+                                <td>{{sunriseSunsetInfo.results.civil_twilight_begin}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Civil Twilight End</th>
+                                <td>{{sunriseSunsetInfo.results.civil_twilight_end}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Astronomical Twilight Begin</th>
+                                <td>{{sunriseSunsetInfo.results.astronomical_twilight_begin}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Astronomical Twilight End</th>
+                                <td>{{sunriseSunsetInfo.results.astronomical_twilight_end}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Filter</h5>
+                <button #closeModal type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form [formGroup]="filterForm" (ngSubmit)="submitFilter()">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="basic-url" class="form-label">Latitude</label>
+                            <div class="input-group">
+                                <input formControlName="lat" type="text" placeholder="36.7201600" class="form-control" id="latitude" aria-describedby="basic-addon3">
+                            </div>
+                            <p class="error-text" *ngIf="isFilterSubmit && filterControl.lat.errors">Please provide a latitude</p>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="basic-url" class="form-label">Longitude</label>
+                            <div class="input-group">
+                                <input formControlName="lng" type="text" placeholder="4.4203400" class="form-control" id="longitude" aria-describedby="basic-addon3">
+                            </div>
+                            <p class="error-text" *ngIf="isFilterSubmit && filterControl.lng.errors">Please provide a longitude</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="basic-url" class="form-label">Date</label>
+                            <div class="input-group">
+                                <input formControlName="date" type="date" placeholder="Date" class="form-control" id="date" aria-describedby="basic-addon3">
+                            </div>
+                            <p class="error-text" *ngIf="isFilterSubmit && filterControl.date.errors">Please select a date</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary text-color-white-100">Apply</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
