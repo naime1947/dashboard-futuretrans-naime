@@ -13,23 +13,13 @@ export class AdminSidebarComponent {
   isLogin = false;
   roleAs: any;
 
-  constructor(
-    // public authService: AuthServiceService,
-    private router: Router
-  ) { }
+  constructor() { }
 
   ngOnInit(): void { }
 
 
-  logout(){
-    // this.authService.logout().subscribe({
-    //   next:(res:any)=>{
-    //     this.router.navigate(['/login'])
-    //   },
-    //   error:(err)=>{
-    //     console.log(err)
-    //   }
-    // })
+  expandSidebar(){
+    this.isExpanded = !this.isExpanded;
   }
 
 }

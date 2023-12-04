@@ -8,7 +8,7 @@
                         <i class='bx bx-refresh nav_icon'></i>
                     </button>
                 </div>
-                <div *ngIf="catFetchInfo" class="card-body">
+                <div *ngIf="catFetchInfo.length != 0" class="card-body">
                     <h5 class="card-title">Number Cats: {{catFetchInfo.length}}</h5>
                     <p class="card-text">{{catFetchInfo.fact}}</p>
                 </div>
@@ -17,12 +17,12 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h3 class="h3">Sunrise / Sunset</h3>
+                    <h3 class="h3">Weather Info</h3>
                     <button class="btn btn-light bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <i class='bx bx-filter-alt nav_icon'></i>
                     </button>
                 </div>
-                <div *ngIf="sunriseSunsetInfo" class="card-body">
+                <div *ngIf="sunriseSunsetInfo.length != 0" class="card-body">
                     <table class="table table-bordered">
                         <tbody>
                             <tr>

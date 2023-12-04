@@ -1,13 +1,16 @@
 @import "../../../theme/variables.scss";
 .expanded{
-    width: 230px !important;
+    width: 230px;
+    transform: translateX(0);
 }
 .callups{
-    width: 68px;
+    width: 0px !important;
+    padding: 0 !important;
+    transform: translateX(-100%);
 }
 .l-navbar {
     top: 0;
-    width: $nav-width;
+    width: 230px;
     height: 100vh;
     padding: .5rem 1rem 0 0;
     transition: .5s;
@@ -63,16 +66,35 @@
     height: 32px;
     background-color: $white-color
 }
+.togle{
+    z-index: 999;
+    position: absolute;
+    right: -34px;
+    top: 6px;
+    border: 0;
+    padding: 5px;
+    background-color: #fdedec;
+    font-size: 24px;
+}
 @media screen and (max-width: 768px) {
     .l-navbar {
         left: 0;
         padding: 1rem 1rem 0 0
     }
     .expanded{
-        width: 68px !important;
+        width: 0 !important;
+        position: absolute;
+        transform: translateX(-100%);
     }
     .callups{
         width: 230px !important;
+        position: absolute;
+        transform: translateX(0);
+    }
+}
+@media screen and (min-width: 768px) {
+    .togle{
+        display: none;
     }
 }
 .cp{

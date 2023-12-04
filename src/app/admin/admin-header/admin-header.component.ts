@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class AdminHeaderComponent {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -29,7 +31,8 @@ export class AdminHeaderComponent {
 
   public logout(){
     this.authService.logout().subscribe((res)=>{
-      this.router.navigate(['/login'])
+      this.toastrService.success('Logout Success!', 'Success');
+      this.router.navigate(['/login']);
     });
   }
 

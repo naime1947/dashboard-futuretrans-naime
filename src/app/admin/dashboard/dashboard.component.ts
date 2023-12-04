@@ -3,6 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from 'src/app/service/data.service';
 import { UtilsService } from 'src/app/service/utils.service';
 
+import { Store } from '@ngrx/store';
+import * as catFactSelector from '../store/selectore/dashboard.selectors'
+import * as catFactActions from '../store/actions/dashboard.actions';
+import { DashboardState } from '../store/states/dashboard.states';
+
 @Component({
    selector: 'app-dashboard',
    templateUrl: './dashboard.component.html',
@@ -20,6 +25,7 @@ export class DashboardComponent implements OnInit {
       private dataService: DataService,
       private fb: FormBuilder,
       private utilsService: UtilsService,
+      private store: Store<DashboardState>,
    ) {
       this.filterForm = this.fb.group({
          lat: ['', [Validators.required]],
@@ -29,35 +35,35 @@ export class DashboardComponent implements OnInit {
    }
 
    ngOnInit(): void {
-      this.getCatFactInfo();
       this.getSunriseSunsetInfo('lat=36.7201600&lng=-4.4203400&date=2023-12-04');
+      this.getCatFactInfo();
    }
 
    // Cat Fetch Info
    public catFetchInfo: any;
    public getCatFactInfo() {
-      this.dataService.getCatFactInfo().subscribe({
-         next: (res) => {
-            this.catFetchInfo = res;
-         },
-         error: (err) => { console.log(err) }
-      })
+      this.store.select(catFactSelector.getDashboard).subscribe(res => {
+         this.catFetchInfo = res.fact;
+      });
+      if (this.catFetchInfo.length === 0) {
+         this.store.dispatch(catFactActions.CatFactDataLoadedAction());
+      }
    }
 
+   // Reload
    public reloadCatFact() {
-      this.getCatFactInfo();
+      this.store.dispatch(catFactActions.CatFactDataLoadedAction());
    }
 
    // Sunrise / Sun Set Info
    public sunriseSunsetInfo: any;
    public getSunriseSunsetInfo(params: string) {
-      this.dataService.getSunriseSunsetInfo(params).subscribe({
-         next: (res) => {
-            this.sunriseSunsetInfo = res;
-            console.log(this.sunriseSunsetInfo)
-         },
-         error: (err) => { console.log(err) }
-      })
+      this.store.select(catFactSelector.getDashboard).subscribe(res => {
+         this.sunriseSunsetInfo = res.weather;
+      });
+      if (this.sunriseSunsetInfo.length === 0) {
+         this.store.dispatch(catFactActions.WeatherDataLoadedAction({ params: params }));
+      }
    }
 
    @ViewChild('closeModal') closeModal!: ElementRef;
@@ -67,7 +73,7 @@ export class DashboardComponent implements OnInit {
          return;
       }
 
-      this.getSunriseSunsetInfo(this.utilsService.params(this.filterForm.value));
+      this.store.dispatch(catFactActions.WeatherDataLoadedAction({ params: this.utilsService.params(this.filterForm.value) }));
 
       this.closeModal.nativeElement.click();
 

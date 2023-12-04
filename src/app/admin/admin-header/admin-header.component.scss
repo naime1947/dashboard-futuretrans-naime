@@ -1,7 +1,7 @@
 @import "../../../theme/variables.scss";
 .header {
     width: 100%;
-    height: $header-height;
+    height: 60px;
     /* position: fixed; */
     top: 0;
     left: 0;
@@ -39,7 +39,6 @@
         border-radius: 4px;
         background-color: #f2d7d4;
         font-size: 14px;
-        min-width: 300px;
         outline: none;
 
         transform: translateX(-50px);
@@ -143,5 +142,22 @@
     }
     .header_img img {
         width: 45px
+    }
+}
+@media screen and (max-width: 767px) {
+    .user{
+        display: none;
+    }
+    .notifications{
+        margin-right: 0px;
+    }
+    .header_img{
+        margin-right: 0px !important;
+    }
+    .dropdown-container .btn-user{
+        padding-right: 0px;
+    }
+    .header_toggle{
+        display: none;
     }
 }

@@ -32,11 +32,11 @@
             </div>
         </div>
         <div (clickOutside)="hideLogoutDropdown(2)" class="dropdown-container">
-            <button (click)="showDropdown(2)"  type="button" class="btn btn-light bg-transparent border-0 d-flex align-items-center">
+            <button (click)="showDropdown(2)"  type="button" class="btn btn-light bg-transparent border-0 d-flex align-items-center btn-user">
                 <div class="header_img me-2"> 
                     <img src="https://i.imgur.com/hczKIze.jpg" alt=""> 
                 </div>
-                <span>{{user}}</span>
+                <span class="user">{{user}}</span>
             </button>
             <div [ngClass]="isDropdown[2]?'show':''" class="dropdown">
                 <ul>

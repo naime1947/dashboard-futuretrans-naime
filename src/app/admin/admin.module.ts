@@ -7,7 +7,11 @@ import { ContactComponent } from './contact/contact.component';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
 import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
 import { AdminRootComponent } from './admin-root/admin-root.component';
-import { SharedModule } from '../shared.module';
+import { SharedModule } from '../shared/shared.module';
+import { StoreModule } from '@ngrx/store';
+import { catFactReducers } from './store/reducers/dashboard.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { DashboardEffects } from './store/effects/dashboard.effects';
 
 
 @NgModule({
@@ -21,7 +25,9 @@ import { SharedModule } from '../shared.module';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    SharedModule
+    SharedModule,
+    StoreModule.forFeature('dashboardState',catFactReducers),
+    EffectsModule.forFeature([DashboardEffects])
   ]
 })
 export class AdminModule { }

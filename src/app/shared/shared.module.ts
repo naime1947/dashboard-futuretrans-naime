@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { ClickOutsideDirective } from './directive/click-outside-directive';
+import { ClickOutsideDirective } from '../directive/click-outside-directive';
+import { LoaderComponent } from './loader/loader.component';
 
 
 @NgModule({
   declarations: [
-    ClickOutsideDirective
+    ClickOutsideDirective,
+    LoaderComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -14,7 +16,8 @@ import { ClickOutsideDirective } from './directive/click-outside-directive';
   exports:[
     ReactiveFormsModule,
     FormsModule,
-    ClickOutsideDirective
+    ClickOutsideDirective,
+    LoaderComponent
   ]
 })
 export class SharedModule { }
