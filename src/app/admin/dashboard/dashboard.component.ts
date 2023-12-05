@@ -98,8 +98,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     );
 
     this.closeModal.nativeElement.click();
-
-    this.filterForm.reset();
     this.isFilterSubmit = false;
   }
 }
