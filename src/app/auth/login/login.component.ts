@@ -35,7 +35,6 @@ export class LoginComponent {
     if(this.logedInForm.invalid){
       return;
     }
-    console.log(this.logedInForm.value);
 
     this.authService.login(this.logedInForm.value.username).subscribe({
       next:(res)=>{
