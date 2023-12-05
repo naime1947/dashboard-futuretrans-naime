@@ -28,14 +28,14 @@ export class DashboardComponent implements OnInit {
       private store: Store<DashboardState>,
    ) {
       this.filterForm = this.fb.group({
-         lat: ['', [Validators.required]],
-         lng: ['', [Validators.required]],
-         date: ['', [Validators.required]],
+         lat: ['36.7201600', [Validators.required]],
+         lng: ['-4.4203400', [Validators.required]],
+         date: ['2023-12-04', [Validators.required]],
       })
    }
 
    ngOnInit(): void {
-      this.getSunriseSunsetInfo('lat=36.7201600&lng=-4.4203400&date=2023-12-04');
+      this.getSunriseSunsetInfo(this.utilsService.params(this.filterForm.value));
       this.getCatFactInfo();
    }
 
@@ -58,6 +58,7 @@ export class DashboardComponent implements OnInit {
    // Sunrise / Sun Set Info
    public sunriseSunsetInfo: any;
    public getSunriseSunsetInfo(params: string) {
+    console.log(params);
       this.store.select(catFactSelector.getDashboard).subscribe(res => {
          this.sunriseSunsetInfo = res.weather;
       });
