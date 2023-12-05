@@ -1,23 +1,23 @@
 <div class="l-navbar bg-theme-60" id="nav-bar" [ngClass]="isExpanded?'expanded':'callups'">
     <nav class="nav">
-        <div> 
+        <div>
             <button class="togle" (click)="expandSidebar()">
-                <i class='bx bx-menu' id="header-toggle"></i>
+                <i class='bx' [ngClass]="isExpanded? 'bx-menu': 'bx-x'" id="header-toggle"></i>
             </button>
-            <a href="#" class="nav_logo"> 
-                <span class="nav_logo-name">Futuretrans</span> 
+            <a href="#" class="nav_logo">
+                <span class="nav_logo-name">Futuretrans</span>
             </a>
-            <div class="nav_list"> 
-                <a routerLink="../admin" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav_link text-theme-30"> 
-                    <i class='bx bx-grid-alt nav_icon'></i> 
-                    <span class="nav_name">Dashboard</span> 
-                </a> 
-                <a routerLink="./contact" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav_link text-theme-30"> 
+            <div class="nav_list">
+                <a routerLink="../admin" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav_link text-theme-30">
+                    <i class='bx bx-grid-alt nav_icon'></i>
+                    <span class="nav_name">Dashboard</span>
+                </a>
+                <a routerLink="./contact" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav_link text-theme-30">
                     <i class='bx bxs-contact nav_icon'></i>
-                    <span class="nav_name">Contacts</span> 
-                </a> 
+                    <span class="nav_name">Contacts</span>
+                </a>
             </div>
-        </div> 
-        <span class="cp mb-4">(c) SuperCompany 2023</span> 
+        </div>
+        <span class="cp mb-4">(c) SuperCompany 2023</span>
     </nav>
 </div>
