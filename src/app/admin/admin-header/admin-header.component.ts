@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { AuthService } from 'src/app/service/auth.service';
   templateUrl: './admin-header.component.html',
   styleUrls: ['./admin-header.component.scss']
 })
-export class AdminHeaderComponent {
+export class AdminHeaderComponent implements OnDestroy {
+  destroy$ = new Subject<boolean>();
 
   @Output() emitSidebar = new EventEmitter<boolean>();
   isShowSidebar:boolean = true
@@ -23,6 +25,11 @@ export class AdminHeaderComponent {
     this.getLogedInUser();
   }
 
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
+  }
+
   // Login, Logout Functionality
   public user:string ='';
   public getLogedInUser(){
@@ -30,7 +37,7 @@ export class AdminHeaderComponent {
   }
 
   public logout(){
-    this.authService.logout().subscribe((res)=>{
+    this.authService.logout().pipe(takeUntil(this.destroy$)).subscribe((res)=>{
       this.toastrService.success('Logout Success!', 'Success');
       this.router.navigate(['/login']);
     });

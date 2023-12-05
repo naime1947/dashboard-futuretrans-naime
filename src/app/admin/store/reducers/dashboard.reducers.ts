@@ -6,7 +6,7 @@ export const initialState: DashboardState = { fact: [], weather: [] };
 
 export const catFactReducer = createReducer<DashboardState>(
   initialState,
-  
+
   on(storeActions.CatFactDataLoadedAction, (state)=>({...state})),
   on(storeActions.CatFactDataLoadedSuccessAction, (state, {fact})=>({...state, fact})),
   on(storeActions.CatFactDataLoadedFaileAction, (state, {error})=>({...state, error})),

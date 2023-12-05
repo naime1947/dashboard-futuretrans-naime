@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { AuthService } from 'src/app/service/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy{
+  destroy$ = new Subject<boolean>();
 
   logedInForm:any = FormGroup;
   isLoginSubmit:boolean = false;
@@ -30,13 +32,18 @@ export class LoginComponent {
 
   ngOnInit(): void {}
 
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
+  }
+
   login(){
     this.isLoginSubmit = true;
     if(this.logedInForm.invalid){
       return;
     }
 
-    this.authService.login(this.logedInForm.value.username).subscribe({
+    this.authService.login(this.logedInForm.value.username).pipe(takeUntil(this.destroy$)).subscribe({
       next:(res)=>{
         this.toastrService.success('Login Success!', 'Success');
         this.router.navigate(['/admin'])
