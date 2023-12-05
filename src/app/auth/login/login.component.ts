@@ -24,7 +24,7 @@ export class LoginComponent {
     private toastrService: ToastrService,
   ) {
     this.logedInForm = this.fb.group({
-      email: ['',[Validators.required]],
+      username: ['',[Validators.required]],
     })
    }
 
@@ -36,8 +36,8 @@ export class LoginComponent {
       return;
     }
     console.log(this.logedInForm.value);
-    
-    this.authService.login(this.logedInForm.value.email).subscribe({
+
+    this.authService.login(this.logedInForm.value.username).subscribe({
       next:(res)=>{
         this.toastrService.success('Login Success!', 'Success');
         this.router.navigate(['/admin'])

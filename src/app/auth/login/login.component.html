@@ -1,21 +1,38 @@
 <section class="bg-theme-10 d-flex justify-content-center w-100 h-100">
-    <div class="bg-white-100 p-4 align-self-center h-fit" style="width: 100%; max-width:450px">
-        <div class="my-3 text-center">
-            <h3>Login</h3>
-        </div>
-        <div class="card-body">
-            <form [formGroup]="logedInForm" (ngSubmit)="login()">
-                <label for="basic-url" class="form-label">Email or Username</label>
-                <div class="d-flex">
-                    <div class="input-group">
-                        <input formControlName="email" type="text" placeholder="Email" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                        <p *ngIf="isLoginSubmit && loginControl.email.errors">Please provide a valid email</p>
-                    </div>
-                    <div class="ms-3 w-10">
-                        <button class="btn btn-primary w-100 color-white-100" type="submit">OK</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+  <div
+    class="bg-white-100 p-4 align-self-center h-fit"
+    style="width: 100%; max-width: 450px"
+  >
+    <div class="my-3 text-center">
+      <h3>Login</h3>
     </div>
+    <div class="card-body">
+      <form [formGroup]="logedInForm" (ngSubmit)="login()">
+        <div class="d-flex">
+          <div class="input-group">
+            <input
+              formControlName="username"
+              type="text"
+              placeholder="User Name"
+              class="form-control"
+              id="basic-url"
+              aria-describedby="basic-addon3"
+            />
+          </div>
+
+          <div class="ms-3 w-10">
+            <button class="btn btn-primary w-100 color-white-100" type="submit">
+              OK
+            </button>
+          </div>
+        </div>
+        <p
+          class="text-danger text-sm"
+          *ngIf="isLoginSubmit && loginControl.username.errors"
+        >
+          Username is required
+        </p>
+      </form>
+    </div>
+  </div>
 </section>
